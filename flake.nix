@@ -33,11 +33,11 @@
         };
 
         commonArgs = {
-          preBuild = "ln -s ${whisperCpp.src} ./sys/whisper.cpp";
+          preBuild = "cp -rs --no-preserve=mode,ownership ${whisperCpp.src} ./sys/whisper.cpp";
 
           # I have had issues with cleanCargoSource removing sys/wrapper.h
-          src = craneLib.cleanCargoSource ./.;
-          # src = ./.;
+          # src = craneLib.cleanCargoSource ./.;
+          src = ./.;
 
           nativeBuildInputs = with pkgs; [
             llvm
